@@ -1,8 +1,8 @@
-export default function Login() {
+export default function Register() {
   return (
     <>
       <div className="py-16 px-4 container mx-auto">
-        <h1> This is Login page component </h1>
+        <h1> This is Register page component </h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, qui
           eos. Architecto quisquam odit soluta fugit quos ab unde, voluptatem
