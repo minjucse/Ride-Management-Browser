@@ -30,8 +30,8 @@ const navigationLinks = [
   { href: "/contact", label: "Contact", role: "PUBLIC" },
   { href: "/faq", label: "FAQ", role: "PUBLIC" },
   { href: "/admin", label: "Dashboard", role: role.admin },
-  { href: "/admin", label: "Dashboard", role: role.superAdmin },
-  { href: "/user", label: "Dashboard", role: role.rider },
+  { href: "/driver", label: "Dashboard", role: role.driver },
+  { href: "/rider", label: "Dashboard", role: role.rider },
 ];
 
 export default function Navbar() {

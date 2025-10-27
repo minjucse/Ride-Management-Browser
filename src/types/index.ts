@@ -9,13 +9,18 @@ export interface IResponse<T> {
   data: T;
 }
 
+export interface ISidebarSubItem {
+  title: string;
+  url: string;
+  component?: ComponentType;
+}
+
 export interface ISidebarItem {
   title: string;
-  items: {
-    title: string;
-    url: string;
-    component: ComponentType;
-  }[];
+  url?: string; // for direct links
+  icon?: ComponentType<any>; // for lucide-react icons
+  component?: ComponentType;
+  items?: ISidebarSubItem[]; // for submenus
 }
 
 export type TRole = "SUPER_ADMIN" | "ADMIN" | "USER";

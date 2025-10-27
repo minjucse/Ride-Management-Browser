@@ -1,15 +1,22 @@
+import { WebBreadcrumb } from "@/components/shared/WebBreadcrumb";
+import { RegisterForm} from "@/components/modules/Authentication/RegisterForm";
+
 export default function Register() {
   return (
     <>
-      <div className="py-16 px-4 container mx-auto">
-        <h1> This is Register page component </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, qui
-          eos. Architecto quisquam odit soluta fugit quos ab unde, voluptatem
-          eos necessitatibus nesciunt, in neque consequatur adipisci velit
-          accusantium illum.
-        </p>
-      </div>
+      <WebBreadcrumb
+             title="Sign Up"
+             subtitle="Join GoRide as a rider or driver"
+             buttonText="GET STARTED"
+             buttonLink="/register"
+           />
+     
+           {/* Your login form here */}
+           <div className="flex justify-center items-center py-10 bg-gray-50">
+             <div className="w-full max-w-lg bg-white p-8 rounded-2xl shadow">
+               <RegisterForm />
+             </div>
+           </div>
     </>
   );
 }

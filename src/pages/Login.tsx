@@ -1,15 +1,24 @@
+import { WebBreadcrumb } from "@/components/shared/WebBreadcrumb";
+import { LoginForm } from "@/components/modules/Authentication/LoginForm";
+
 export default function Login() {
   return (
     <>
-      <div className="py-16 px-4 container mx-auto">
-        <h1> This is Login page component </h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, qui
-          eos. Architecto quisquam odit soluta fugit quos ab unde, voluptatem
-          eos necessitatibus nesciunt, in neque consequatur adipisci velit
-          accusantium illum.
-        </p>
+      <WebBreadcrumb
+        title="Sign In"
+        subtitle="Access your GoRide account"
+        buttonText="GET STARTED"
+        buttonLink="/login"
+      />
+
+      {/* Your login form here */}
+      <div className="flex justify-center items-center py-10 bg-gray-50">
+        <div className="w-full max-w-lg bg-white p-8 rounded-2xl shadow">
+          <LoginForm />
+        </div>
       </div>
+    
+
     </>
   );
 }
