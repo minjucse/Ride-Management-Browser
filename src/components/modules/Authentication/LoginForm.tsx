@@ -108,7 +108,7 @@ export function LoginForm({
       </div>
       <div className="text-center text-sm">
         Don&apos;t have an account?{" "}
-        <Link to="/register" replace className="underline underline-offset-4">
+        <Link to="/register" replace className="text-blue-600 font-medium hover:underline">
           Register
         </Link>
       </div>

@@ -13,7 +13,7 @@ export default function Register() {
      
            {/* Your login form here */}
            <div className="flex justify-center items-center py-10 bg-gray-50">
-             <div className="w-full max-w-lg bg-white p-8 rounded-2xl shadow">
+             <div className="relative z-10 w-full max-w-2xl bg-white p-5 rounded-2xl shadow">
                <RegisterForm />
              </div>
            </div>

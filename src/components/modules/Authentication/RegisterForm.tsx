@@ -23,6 +23,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Mail, Phone, User } from "lucide-react";
+import { useState } from "react";
 
 // ✅ Zod schema with role validation
 const registerSchema = z
@@ -32,6 +34,13 @@ const registerSchema = z
       .min(3, { message: "Name is too short" })
       .max(50, { message: "Name is too long" }),
     email: z.string().email({ message: "Invalid email address" }),
+     phone: z
+    .string()
+    .regex(/^(?:\+8801\d{9}|01\d{9})$/, {
+      message:
+        "Phone number must be valid for Bangladesh. Format: +8801XXXXXXXXX or 01XXXXXXXXX",
+    })
+    .optional(),
      password: z
       .string()
       .min(8, { message: "Password must be at least 8 characters long." })
@@ -59,12 +68,14 @@ export function RegisterForm({
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [register] = useRegisterMutation();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const form = useForm<z.infer<typeof registerSchema>>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
       name: "",
       email: "",
+      phone: "",
       password: "",
       confirmPassword: "",
       role: undefined,
@@ -72,9 +83,11 @@ export function RegisterForm({
   });
 
   const onSubmit = async (data: z.infer<typeof registerSchema>) => {
+    setLoading(true);
     const userInfo = {
       name: data.name,
       email: data.email,
+        phone: data.phone,
       password: data.password,
       role: data.role,
     };
@@ -87,125 +100,174 @@ export function RegisterForm({
       console.error(error);
       toast.error("Registration failed");
     }
+    finally {
+      setLoading(false); 
+    }
   };
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
-      {/* Header */}
-      <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold">Register your account</h1>
-        <p className="text-sm text-muted-foreground">
-          Enter your details to create an account
+      {/* Header - Updated to match the image text and design */}
+      <div className="flex flex-col items-center gap-2 text-center pt-8"> 
+        <h1 className="text-3xl font-bold text-blue-800">Create Your Account</h1>
+        <p className="text-md text-gray-600">
+          Join RideShare Pro and start your journey today
         </p>
       </div>
 
-      {/* Form */}
-      <div className="grid gap-6">
+      {/* Form Container */}
+      <div className="">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            {/* Name */}
-            <FormField
-              control={form.control}
-              name="name"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Name</FormLabel>
-                  <FormControl>
-                    <Input placeholder="John Doe" {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Email */}
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="john.doe@company.com"
-                      type="email"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Password */}
-            <FormField
-              control={form.control}
-              name="password"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Password</FormLabel>
-                  <FormControl>
-                    <Password {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* Confirm Password */}
-            <FormField
-              control={form.control}
-              name="confirmPassword"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
-                  <FormControl>
-                    <Password {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            {/* ✅ Role Selection - Full Width */}
-            <FormField
-              control={form.control}
-              name="role"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Select Role</FormLabel>
-                  <Select
-                    onValueChange={field.onChange}
-                    defaultValue={field.value}
-                  >
+            
+            {/* Grid for Name & Email */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Full Name */}
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Full Name</FormLabel>
                     <FormControl>
-                      <SelectTrigger className="w-full">
-                        <SelectValue placeholder="Select your role" />
-                      </SelectTrigger>
+                      <div className="relative">
+                        <Input 
+                          placeholder="Enter your full name" 
+                          {...field} 
+                          className="pl-10" // Space for icon
+                        />
+                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      </div>
                     </FormControl>
-                    <SelectContent className="w-full">
-                      <SelectItem value="Rider">Rider</SelectItem>
-                      <SelectItem value="Driver">Driver</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Email */}
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          placeholder="Enter your email"
+                          type="email"
+                          {...field}
+                          className="pl-10" // Space for icon
+                        />
+                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
+            {/* Grid for Phone & Role */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Phone (Optional) - New Field */}
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone (Optional)</FormLabel>
+                    <FormControl>
+                      <div className="relative">
+                        <Input
+                          placeholder="Enter your phone number"
+                          type="tel"
+                          {...field}
+                          className="pl-10" // Space for icon
+                        />
+                        <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                      </div>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              {/* Role Selection */}
+              <FormField
+                control={form.control}
+                name="role"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Role</FormLabel>
+                    <Select
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger className="w-full">
+                          <SelectValue placeholder="Select your role" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="w-full">
+                        <SelectItem value="Rider">Rider</SelectItem>
+                        <SelectItem value="Driver">Driver</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
+            {/* Grid for Password & Confirm Password */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Password */}
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      {/* Assuming your Password component handles the lock icon and visibility toggle internally */}
+                      <Password placeholder="••••••••" {...field} /> 
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Confirm Password */}
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                      {/* Assuming your Password component handles the lock icon and visibility toggle internally */}
+                      <Password placeholder="••••••••" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
 
             {/* Submit Button */}
-            <Button type="submit" className="w-full">
-              Register
+            <Button type="submit" className="w-full py-6 text-lg font-semibold" disabled={loading}>
+              {loading ? 'Creating Account...' : 'Create Account'}
             </Button>
           </form>
         </Form>
       </div>
 
       {/* Footer */}
-      <div className="text-center text-sm">
+      <div className="text-center text-sm mt-4">
         Already have an account?{" "}
-        <Link to="/login" className="underline underline-offset-4">
-          Login
+        <Link to="/login" className="text-blue-600 font-medium hover:underline">
+          Sign in here
         </Link>
       </div>
     </div>
