@@ -12,7 +12,7 @@ export default function Logo() {
           Carr<span className="text-yellow-500">Go</span>
         </span>
         <span className="truncate text-xs text-muted-foreground">
-          TAXI SERVICE
+          Ride Share
         </span>
       </div>
     </div>

@@ -146,7 +146,7 @@ export default function Footer() {
                     className="text-foreground/90 transition hover:text-foreground/60"
                   >
                     {" "}
-                    1on1 Coaching{" "}
+                    Rides{" "}
                   </a>
                 </li>
 
@@ -156,7 +156,7 @@ export default function Footer() {
                     className="text-foreground/90 transition hover:text-foreground/60"
                   >
                     {" "}
-                    Company Review{" "}
+                    Drivers{" "}
                   </a>
                 </li>
 
@@ -166,7 +166,7 @@ export default function Footer() {
                     className="text-foreground/90 transition hover:text-foreground/60"
                   >
                     {" "}
-                    Accounts Review{" "}
+                    Business{" "}
                   </a>
                 </li>
 
@@ -176,19 +176,10 @@ export default function Footer() {
                     className="text-foreground/90 transition hover:text-foreground/60"
                   >
                     {" "}
-                    HR Consulting{" "}
+                    Pricing{" "}
                   </a>
                 </li>
 
-                <li>
-                  <a
-                    href="#"
-                    className="text-foreground/90 transition hover:text-foreground/60"
-                  >
-                    {" "}
-                    SEO Optimisation{" "}
-                  </a>
-                </li>
               </ul>
             </div>
 
@@ -212,7 +203,7 @@ export default function Footer() {
                     className="text-foreground/90 transition hover:text-foreground/60"
                   >
                     {" "}
-                    Meet the Team{" "}
+                    Features{" "}
                   </a>
                 </li>
 
@@ -222,7 +213,16 @@ export default function Footer() {
                     className="text-foreground/90 transition hover:text-foreground/60"
                   >
                     {" "}
-                    Accounts Review{" "}
+                    Blog{" "}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    className="text-foreground/90 transition hover:text-foreground/60"
+                  >
+                    {" "}
+                    Careers{" "}
                   </a>
                 </li>
               </ul>
@@ -251,7 +251,15 @@ export default function Footer() {
                     FAQs{" "}
                   </a>
                 </li>
-
+                <li>
+                  <a
+                    href="#"
+                    className="text-foreground/90 transition hover:text-foreground/60"
+                  >
+                    {" "}
+                    Report Issue{" "}
+                  </a>
+                </li>
                 <li>
                   <a
                     href="#"
@@ -261,6 +269,7 @@ export default function Footer() {
                     Live Chat{" "}
                   </a>
                 </li>
+
               </ul>
             </div>
 

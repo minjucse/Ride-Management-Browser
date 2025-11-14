@@ -1,4 +1,4 @@
-import { ISidebarItem, ISidebarSubItem } from "@/types";
+import { ISidebarItem} from "@/types";
 
 interface RouteItem {
   path: string;

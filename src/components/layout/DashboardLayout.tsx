@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Sun, Moon, ChevronDown, X } from "lucide-react";
+import { Sun, Moon, ChevronDown} from "lucide-react";
 import { Outlet, useLocation } from "react-router";
 import { useState } from "react";
 

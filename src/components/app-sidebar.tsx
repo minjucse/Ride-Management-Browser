@@ -17,7 +17,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { ChevronDown, ChevronRight, Car } from "lucide-react";
+import { ChevronDown, ChevronRight} from "lucide-react";
 import { NavLink } from "react-router";
 import { getSidebarItems } from "@/utils/getSidebarItems";
 import { useUserInfoQuery } from "@/redux/features/auth/auth.api";
